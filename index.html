@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body style="background-image: url(bg.jpg);">
+	<div><h1>очки:<span class="score">0</span></h1></div>
+	<div><h1>жуки:<span class="juki_score">0</span></h1></div>
+
+	<script type="text/javascript">
+		let score = 0
+		let juki_score = 0
+
+		let create = function(){
+			let rand1 = Math.random()*1200
+			let round1 = Math.round(rand1)
+			let rand2 = Math.random()*600
+			let round2 = Math.round(rand2)
+			let newImg = document.createElement('img');
+			document.body.appendChild(newImg);
+			newImg.src = "img.svg"
+			newImg.style.width = "100px"
+			newImg.style.height = "100px"
+			newImg.style.marginLeft = round1 + "px"
+			newImg.style.marginTop = round2 + "px"
+			newImg.style.position = 'absolute'
+			newImg.onclick = function(){
+				newImg.style.display = "none"
+				score = score + 1
+				document.querySelector(".score").innerHTML = score
+				juki_score = juki_score - 1
+				document.querySelector('.juki_score').innerHTML = juki_score
+
+			}
+			juki_score = juki_score + 1
+			document.querySelector('.juki_score').innerHTML = juki_score
+			
+		}		
+		
+		let interval = setInterval(create,1000)
+
+		let timeout = function() {//создание функции
+			if (  score >=10  ) {//условие
+				alert("you win")
+			}
+			else {
+				alert("you lose")
+			} 
+			clearInterval(interval)
+
+		}
+		setTimeout(timeout,15000)
+
+		
+
+		
+	</script>
+</body>
+</html>
